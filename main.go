@@ -7,7 +7,7 @@ import (
 	"github.com/namefreezers/genesis-ses-assignment/emailsdb"
 )
 
-const emails_file_path = "./emails.txt"
+const emails_file_path = "./emails_data/emails.txt"
 
 func main() {
 	log.SetPrefix("btc-course-service: ")
@@ -15,5 +15,5 @@ func main() {
 	emailsdb.Init(emails_file_path)
 	defer emailsdb.CloseFileDb() // file will be released after death of the process, but just in case
 
-	api.RunApi("localhost:5000")
+	api.RunApi("0.0.0.0:5000")
 }

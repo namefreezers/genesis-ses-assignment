@@ -18,19 +18,22 @@ func is_email_valid(email string) bool {
 	return err == nil
 }
 
-func read_emails_from_file(filename string) map[string]struct{} {
+func read_emails_from_file(emails_file_path string) map[string]struct{} {
 	var res map[string]struct{} = make(map[string]struct{})
 
-	opened_file, err := os.Open("./emails.txt")
-	if err == nil {
-		defer opened_file.Close()
+	opened_file, err := os.Open(emails_file_path)
+	if err != nil {
+		log.Println(err.Error())
+		return res
+	}
 
-		scanner := bufio.NewScanner(opened_file)
-		for scanner.Scan() {
-			email := scanner.Text()
-			if is_email_valid(email) {
-				res[email] = struct{}{}
-			}
+	defer opened_file.Close()
+
+	scanner := bufio.NewScanner(opened_file)
+	for scanner.Scan() {
+		email := scanner.Text()
+		if is_email_valid(email) {
+			res[email] = struct{}{}
 		}
 	}
 
