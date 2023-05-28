@@ -31,6 +31,8 @@ curl http://localhost:5000/api/sendEmails --request "POST"
    In [current solution](https://github.com/namefreezers/genesis-ses-assignment/blob/main/fetchbtcrate/fetch_rate_main.go) we fetch few third-party api's syncronously, 
    one-by-one and use answer from first available service among few defined services (currently there are implemetations for [_Coinbase_](https://github.com/namefreezers/genesis-ses-assignment/blob/main/fetchbtcrate/coinbase/fetch_price_coinbase.go) and [_Coingecko_](https://github.com/namefreezers/genesis-ses-assignment/blob/main/fetchbtcrate/coingecko/fetch_price_coingecko.go) third-party services).
 2. Implement some unit tests.
+3. Replase syncronous sending of each emails one-by-one by asyncronous sending. 
+   We need to send all emails one-by-one instead of "batch-sending" because we need to set header `To:` individually.
 
 I had to work during workdays and had a plans for the weekend, so if I won't have time to do it before the deadline, I will possibly implement it in the branch `enhancements_after_deadline` till Monday's 29th midday.
 
