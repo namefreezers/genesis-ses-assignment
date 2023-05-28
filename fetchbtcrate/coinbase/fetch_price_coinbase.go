@@ -10,10 +10,12 @@ import (
 
 const coinbase_api_url = "https://api.coinbase.com/v2/prices/BTC-UAH/buy"
 
+// Struct to parse response from Coinbase api
 type coinbase_parsed_response struct {
 	Data coinbase_json_data_field `json:"data"`
 }
 
+// inner field `data` of response from Coinbase api
 type coinbase_json_data_field struct {
 	Btc_uah string `json:"amount"`
 }
@@ -35,11 +37,13 @@ func coinbase_parse_price_from_response_body(body_bytes []byte) (float64, error)
 
 func FetchBtcUahRate() (float64, error) {
 	resp_body, err := util.Request_and_get_resp_body(coinbase_api_url)
+	// if there is an error while requesting url or getting body from response, return error
 	if err != nil {
 		return 0, err
 	}
 
 	res_price_float, err := coinbase_parse_price_from_response_body(resp_body)
+	// Return error if response's body doesn't match scheme
 	if err != nil {
 		return 0, err
 	}
