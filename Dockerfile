@@ -26,6 +26,9 @@ ENTRYPOINT ["/genesis-ses-assignment"]
 
 
 
+# ============================================================================
+# Option of full-featured container for development purposes
+# ============================================================================
 
 # FROM golang:1.20.4-alpine3.18
 
