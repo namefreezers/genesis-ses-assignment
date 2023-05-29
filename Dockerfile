@@ -4,6 +4,10 @@ RUN apk --no-cache add ca-certificates
 
 WORKDIR /go/src/github.com/namefreezers/genesis-ses-assignment
 
+# this step is needed to cache the downloaded go dependencies in order to increase re-build speed
+COPY go.mod go.sum ./
+RUN go mod download
+
 COPY . .
 
 RUN CGO_ENABLED=0 GOOS=linux go build -a -o /genesis-ses-assignment .
