@@ -1,0 +1,9 @@
+services:
+  genesis-ses-assignment:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./emails_data:/emails_data
+    env_file:
+      - ./env.list
